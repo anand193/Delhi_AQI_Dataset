@@ -19,22 +19,21 @@ A Streamlit web app to predict Delhi’s Air Quality Index (AQI) using daily pol
 - pip install -r requirements.txt
 
 ---
-Usage
-streamlit run app.py
-Select Date, Month, Year, Day
-Adjust pollutant sliders
-Click Predict AQI
+### Usage
+- streamlit run app.py
+- Select Date, Month, Year, Day
+- Adjust pollutant sliders
+- Click Predict AQI
 
 ---
-AQI Categories
-AQI	Category
-0-50	Good 😊
-51-100	Satisfactory 🙂
-101-200	Moderate 😐
-201-300	Poor 😟
-301+	Severe 😷
+### AQI Categories
+. 0-50	Good 😊
+. 51-100	Satisfactory 🙂
+. 101-200	Moderate 😐
+. 201-300	Poor 😟
+. 301+	Severe 😷
 
 ---
-Requirements
-Python 3.8+
-streamlit, pandas, numpy, tensorflow, scikit-learn
+### Requirements
+- Python 3.8+
+- streamlit, pandas, numpy, tensorflow, scikit-learn

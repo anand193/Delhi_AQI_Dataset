@@ -27,11 +27,11 @@ A Streamlit web app to predict Delhi’s Air Quality Index (AQI) using daily pol
 
 ---
 ### AQI Categories
-. 0-50	Good 😊
-. 51-100	Satisfactory 🙂
-. 101-200	Moderate 😐
-. 201-300	Poor 😟
-. 301+	Severe 😷
+- 0-50	Good 😊
+- 51-100	Satisfactory 🙂
+- 101-200	Moderate 😐
+- 201-300	Poor 😟
+- 301+	Severe 😷
 
 ---
 ### Requirements

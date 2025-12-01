@@ -2,12 +2,24 @@ import pandas as pd
 import numpy as np
 import streamlit as st
 import pickle
+import os  # <-- For path handling
+
+# ---------------------------
+# Get current file directory
+# ---------------------------
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 # ---------------------------
 # Load model and data
 # ---------------------------
-model = pickle.load(open('model.pkl', 'rb'))
-data = pickle.load(open('data.pkl', 'rb'))
+model_path = os.path.join(BASE_DIR, 'model.pkl')
+data_path = os.path.join(BASE_DIR, 'data.pkl')
+
+with open(model_path, 'rb') as f:
+    model = pickle.load(f)
+
+with open(data_path, 'rb') as f:
+    data = pickle.load(f)
 
 # ---------------------------
 # App Title
@@ -20,12 +32,11 @@ st.write("Predict AQI using pollutant levels and date information.")
 # ---------------------------
 st.subheader("📅 Date & Day Inputs")
 
-# Select date
 date = st.selectbox("Select Date", sorted(data['Date'].unique()))
 month = st.selectbox("Select Month", sorted(data['Month'].unique()))
 year = st.selectbox("Select Year", sorted(data['Year'].unique()))
 
-# Encode Days if needed (convert string to numeric mapping)
+# Encode Days if needed
 days_mapping = {day: i for i, day in enumerate(sorted(data['Days'].unique()))}
 day_name = st.selectbox("Day of Week", sorted(data['Days'].unique()))
 day = days_mapping[day_name]  # numeric encoding
@@ -45,14 +56,11 @@ Ozone = st.sidebar.slider("Ozone", 0, 120, 40)
 # Prediction
 # ---------------------------
 if st.button("Predict AQI"):
-    # Ensure input order matches training features:
-    # ['Date', 'Month', 'Year', 'Days', 'PM2.5', 'PM10', 'NO2', 'CO', 'Ozone']
+    # Ensure input order matches training features
     input_values = np.array([[date, month, year, day, PM2_5, PM_10, NO_2, CO, Ozone]])
     
-    # Predict and convert to float
     prediction = float(model.predict(input_values)[0])
     
-    # Display AQI
     st.success(f"🌟 Predicted AQI: {prediction:.2f}")
     
     # AQI Category & Color
